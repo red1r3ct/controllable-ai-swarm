@@ -1,0 +1,2 @@
+class BaseSwarmModel:
+    pass
