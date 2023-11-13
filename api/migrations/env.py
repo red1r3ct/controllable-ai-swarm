@@ -8,7 +8,10 @@ from sqlalchemy import pool
 from alembic import context
 
 from database import Base
-from swarms.models import Swarm, Agent
+import swarms.models
+import tasks.models
+import projects.models
+
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

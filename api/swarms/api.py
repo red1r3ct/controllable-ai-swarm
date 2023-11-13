@@ -31,13 +31,13 @@ def read_swarms(
     swarms = query.order_by(models.Swarm.id).limit(limit).all()
     total_swarms = db.query(models.Swarm).count()
 
-    return schemas.SwarmListResponse(
-        meta=schemas.ListMeta(
+    return {
+        "meta": schemas.ListMeta(
             total=total_swarms,
             next_cursor=swarms[-1].id if swarms else None,
         ),
-        data=swarms,
-    )
+        "data": swarms,
+    }
 
 
 @swarms_router.get("/swarms/{swarm_id}", response_model=schemas.SwarmReadResponse)
@@ -149,13 +149,13 @@ def read_agents(
     agents = query.order_by(models.Agent.id).limit(limit).all()
     total_agents = db.query(models.Agent).count()
 
-    return schemas.AgentListResponse(
-        meta=schemas.ListMeta(
+    return {
+        "meta": schemas.ListMeta(
             total=total_agents,
             next_cursor=agents[-1].id if agents else None,
         ),
-        data=agents,
-    )
+        "data": agents,
+    }
 
 
 @agents_router.put("/agents/{agent_id}", response_model=schemas.Agent)
